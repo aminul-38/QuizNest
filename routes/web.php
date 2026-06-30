@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\ParticipationController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuizController;
 use Illuminate\Support\Facades\Route;
 
@@ -58,3 +59,8 @@ Route::get('/quiz/{quizID}/view', [QuizController::class, 'viewQuiz'])
 Route::get('/leaderboard/quiz/{quizID}', [LeaderboardController::class, 'quizLeaderboard'])
     ->middleware('auth.user')
     ->name('leaderboard.quiz');
+
+Route::middleware(['auth.user'])->group(function () {
+    Route::get('/profile/{userID}/{userName}', [ProfileController::class, 'showProfile'])
+        ->name('profile.show');
+});

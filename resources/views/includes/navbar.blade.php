@@ -212,7 +212,9 @@
         @if(session('user_id'))
         <ul class="dropdown-menu dropdown-menu-end">
             <li>
-                <a class="dropdown-item" href="#">
+                <a
+                    class="dropdown-item"
+                    href="{{ route('profile.show',['userID'=>session('user_id'),'userName'=>session('user_name')]) }}">
                     <i class="bi bi-person me-2"></i>
                     Profile
                 </a>

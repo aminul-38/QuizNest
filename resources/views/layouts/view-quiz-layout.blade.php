@@ -3,7 +3,7 @@
 <body>
     @include('includes.navbar')
 
-    @include('includes.quiz-card')
+    @include('component.quiz-card')
 
     @yield('content')
 
