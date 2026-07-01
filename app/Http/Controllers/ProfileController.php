@@ -12,6 +12,6 @@ class ProfileController extends Controller
         $user = User::select('id', 'name', 'email', 'phone', 'role', 'profile_img_path')
             ->where('id', $request->userID)
             ->first();
-        return $user;
+        return view('users.profile', compact('user'));
     }
 }

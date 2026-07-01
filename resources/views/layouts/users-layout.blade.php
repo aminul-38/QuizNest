@@ -1,9 +1,9 @@
 @include('includes.header')
 
 <body>
-    @include('includes.navbar')
+    @include('users.includes.navbar')
 
-    @include('components.quiz-card')
+    @include('components.profile-card')
 
     @yield('content')
 
