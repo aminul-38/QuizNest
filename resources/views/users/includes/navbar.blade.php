@@ -140,16 +140,6 @@
         color: var(--primary);
     }
 
-    .dropdown-item.active,
-    .dropdown-item:active {
-        background: var(--primary);
-        color: #fff;
-    }
-
-    .dropdown-item.active i {
-        color: #fff;
-    }
-
     /* Mobile */
 
     @media(max-width: 768px) {
@@ -224,7 +214,7 @@
         <ul class="dropdown-menu dropdown-menu-end">
             <li>
                 <a
-                    class="dropdown-item {{ request()->routeIs('profile.show') ? 'active' : '' }}"
+                    class="dropdown-item"
                     href="{{ route('profile.show',['userID'=>session('user_id'),'userName'=>session('user_name')]) }}">
                     <i class="bi bi-person me-2"></i>
                     Profile

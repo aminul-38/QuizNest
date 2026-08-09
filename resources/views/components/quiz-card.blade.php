@@ -100,7 +100,8 @@
                     alt="creator">
             </div>
             <div class="creator-info">
-                <a href="#">
+                <a
+                    href="{{ route('profile.show',['userID'=>$quiz->creator->id, 'userName'=>$quiz->creator->name]) }}">
                     {{ $quiz->creator->name }}
                 </a><br>
                 <small>

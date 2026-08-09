@@ -7,7 +7,7 @@
 @endpush
 
 @section('content')
-<div class="container">
-    Profile content
+<div>
+    creator profile
 </div>
 @endsection

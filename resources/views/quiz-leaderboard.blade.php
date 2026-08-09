@@ -168,7 +168,9 @@
                             </div>
                         </td>
                         <td>
-                            <a href="#" class="participant-link">
+                            <a
+                                href="{{ route('profile.show',['userID'=>$result->participant->id,'userName'=>$result->participant->name]) }}"
+                                class="participant-link">
                                 <span class="participant-name">
                                     {{ $result->participant->name }}
                                 </span>
