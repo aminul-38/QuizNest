@@ -120,6 +120,34 @@
         font-size: .95rem;
     }
 
+    /* button section */
+    .action-section {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 35px;
+    }
+
+    /* Back Button */
+    .btn-go-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        border-radius: 14px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all .3s ease;
+        border: 2px solid var(--primary);
+        color: var(--primary);
+        font-weight: 600;
+    }
+
+    .btn-go-back:hover {
+        background: var(--primary);
+        color: white;
+    }
+
     @media (max-width: 768px) {
 
         .results-table thead th,
@@ -130,6 +158,15 @@
 
         .results-header {
             padding: 20px;
+        }
+
+        .action-section {
+            flex-direction: column;
+        }
+
+        .btn-go-back {
+            justify-content: center;
+            width: 100%;
         }
     }
 </style>
@@ -191,6 +228,13 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="action-section">
+        <a href="javascript:history.back()"
+            class="btn-go-back">
+            <i class="bi bi-arrow-left me-2"></i>
+            Go Back
+        </a>
     </div>
 </div>
 @endsection

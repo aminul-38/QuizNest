@@ -246,13 +246,14 @@
             </div>
 
             <div class="profile-stats">
+                @if($user->role == "Learner")
                 <div class="profile-stat-box">
                     <div class="profile-stat-icon">
                         <i class="bi bi-patch-question-fill"></i>
                     </div>
                     <div class="profile-stat-content">
                         <h5>
-                            10
+                            {{ $stats->quiz_participated }}
                         </h5>
                         <span>
                             Quiz Participated
@@ -265,13 +266,41 @@
                     </div>
                     <div class="profile-stat-content">
                         <h5>
-                            100
+                            {{ $stats->total_points }}
                         </h5>
                         <span>
                             Total Points
                         </span>
                     </div>
                 </div>
+                @else
+                <div class="profile-stat-box">
+                    <div class="profile-stat-icon">
+                        <i class="bi bi-journal-plus"></i>
+                    </div>
+                    <div class="profile-stat-content">
+                        <h5>
+                            {{ $stats->quiz_created }}
+                        </h5>
+                        <span>
+                            Quizzes Created
+                        </span>
+                    </div>
+                </div>
+                <div class="profile-stat-box">
+                    <div class="profile-stat-icon">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+                    <div class="profile-stat-content">
+                        <h5>
+                            {{ $stats->total_participant }}
+                        </h5>
+                        <span>
+                            Total Participants
+                        </span>
+                    </div>
+                </div>
+                @endif
             </div>
         </div>
         <div class="profile-card-accent"></div>

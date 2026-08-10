@@ -228,7 +228,12 @@
                             </td>
 
                             <td>
-                                <a href="#"
+                                <a
+                                    @if(session('user_role')=="Learner" )
+                                    href="{{ route('quiz.start',['quizID'=>$result->quiz->id]) }}"
+                                    @else
+                                    href="{{ route('quiz.view',['quizID'=>$result->quiz->id]) }}"
+                                    @endif
                                     class="result-quiz-link">
                                     <i class="bi bi-journal-text"></i>
                                     {{ $result->quiz->title }}

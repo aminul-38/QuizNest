@@ -129,6 +129,12 @@ class HomeController extends Controller
 
     public function quizStart(Request $request)
     {
+        $hasParticipated = Result::where('quiz_id', $request->quizID)
+            ->where('participant_id', session('user_id'))
+            ->exists();
+        if ($hasParticipated) {
+            return redirect()->route('quiz.view', ['quizID' => $request->quizID]);
+        }
         $quiz = Quiz::where('id', $request->quizID)
             ->with('creator:id,name,profile_img_path')
             ->withCount('results as total_participant')

@@ -106,8 +106,31 @@
         box-shadow: 0 12px 25px rgba(124, 77, 255, .25);
     }
 
+    .btn-go-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        border-radius: 14px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all .3s ease;
+        border: 2px solid var(--primary);
+        color: var(--primary);
+        font-weight: 600;
+    }
+
+    .btn-go-back:hover {
+        background: var(--primary);
+        color: white;
+    }
+
     .start-footer {
         text-align: center;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 35px;
     }
 
     .private-section {
@@ -187,6 +210,13 @@
         font-size: 1.8rem;
     }
 
+    .action-section {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 35px;
+    }
+
     @media (max-width: 576px) {
         .code-input-group {
             flex-direction: column;
@@ -194,6 +224,16 @@
 
         .code-submit-btn {
             height: 55px;
+        }
+
+        .start-footer {
+            flex-direction: column;
+        }
+
+        .btn-go-back,
+        .start-btn {
+            justify-content: center;
+            width: 100%;
         }
     }
 </style>
@@ -233,6 +273,11 @@
             <div class="alert alert-danger">{{ $error }}</div>
             @endforeach
             <div class="start-footer">
+                <a href="javascript:history.back()"
+                    class="btn-go-back">
+                    <i class="bi bi-arrow-left me-2"></i>
+                    Go Back
+                </a>
                 <a
                     href="{{route('participate.quiz',['quizID'=>$quiz->id])}}"
                     class="start-btn">
@@ -271,6 +316,13 @@
                         </button>
                     </div>
                 </form>
+            </div>
+            <div class="action-section">
+                <a href="javascript:history.back()"
+                    class="btn-go-back">
+                    <i class="bi bi-arrow-left me-2"></i>
+                    Go Back
+                </a>
             </div>
             @endif
 

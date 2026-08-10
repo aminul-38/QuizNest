@@ -72,7 +72,7 @@
         margin-top: 35px;
     }
 
-    .btn-home,
+    .btn-go-back,
     .btn-leaderboard {
         display: inline-flex;
         align-items: center;
@@ -84,17 +84,21 @@
         transition: all .3s ease;
     }
 
-    /* Home Button */
-    .btn-home {
-        background: white;
-        color: var(--primary);
+    /* Back Button */
+
+    .btn-go-back {
         border: 2px solid var(--primary);
+        color: var(--primary);
+        padding: 12px 24px;
+        border-radius: 14px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: .3s;
     }
 
-    .btn-home:hover {
+    .btn-go-back:hover {
         background: var(--primary);
         color: white;
-        transform: translateY(-2px);
     }
 
     /* Leaderboard Button */
@@ -120,7 +124,7 @@
             flex-direction: column;
         }
 
-        .btn-home,
+        .btn-go-back,
         .btn-leaderboard {
             justify-content: center;
             width: 100%;
@@ -156,9 +160,10 @@
 
         <!-- Action Buttons -->
         <div class="action-section">
-            <a href="{{ route('home') }}" class="btn-home">
-                <i class="bi bi-house-door-fill"></i>
-                Back to Home
+            <a href="javascript:history.back()"
+                class="btn-go-back">
+                <i class="bi bi-arrow-left me-2"></i>
+                Go Back
             </a>
 
             <a href="{{ route('leaderboard.quiz', ['quizID' => $quiz->id]) }}"
