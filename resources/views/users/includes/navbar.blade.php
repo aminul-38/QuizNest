@@ -189,12 +189,14 @@
             Create Quiz
         </a>
         @else
-        <a href="/my-quizzes"
-            class="{{ request()->is('my-quizzes*') ? 'active' : '' }}">
+        <a
+            href="{{ route('profile.my.attempts',['userID'=>session('user_id'),'userName'=>session('user_name')]) }}"
+            class="{{ request()->routeIs('profile.my.attempts') ? 'active' : '' }}">
             My Attempts
         </a>
-        <a href="/quiz/create"
-            class="{{ request()->is('quiz/create*') ? 'active' : '' }}">
+        <a
+            href="{{ route('profile.my.results',['userID'=>session('user_id'),'userName'=>session('user_name')]) }}"
+            class="{{ request()->routeIs('profile.my.results') ? 'active' : '' }}">
             My Results
         </a>
         @endif

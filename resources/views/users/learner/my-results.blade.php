@@ -238,10 +238,10 @@
         <!-- Section Header -->
         <div class="participated-results-header">
             <h2 class="participated-results-title">
-                Quiz Activity
+                Your Quiz Results
             </h2>
             <span class="participated-results-subtitle">
-                A look at the quizzes participated in and the results achieved.
+                View the quizzes you have attempted and the results you achieved.
             </span>
         </div>
 
@@ -320,10 +320,10 @@
             <i class="bi bi-journal-x"></i>
         </div>
         <h3 class="attempted-quizzes-empty-title">
-            No Quiz Attempts Yet
+            No Quiz Results Yet
         </h3>
         <p class="attempted-quizzes-empty-text">
-            No quiz attempts yet. Once quizzes are attempted, they will appear here for you to explore.
+            You haven't attempted any quizzes yet. Your quiz results will appear here once you complete an attempt.
         </p>
     </div>
     @endif

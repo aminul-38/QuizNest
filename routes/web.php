@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LeaderboardController;
+use App\Http\Controllers\LearnerController;
 use App\Http\Controllers\ParticipationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuizController;
@@ -21,6 +22,8 @@ use function Laravel\Prompts\password;
 |
 */
 
+/* Authentication Routes */
+
 Route::get('/registration', [AuthController::class, 'registration'])
     ->name('auth.registration');
 Route::post('/registration', [AuthController::class, 'registrationSubmit'])
@@ -32,6 +35,7 @@ Route::post('/login', [AuthController::class, 'loginAttempt'])
 Route::get('/logout', [AuthController::class, 'logout'])
     ->name('auth.logout');
 
+/* Home Page Routes */
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
 Route::get('/quizzes/type/{quizType}', [HomeController::class, 'filterByType'])
@@ -42,6 +46,7 @@ Route::get('/quiz/{quizID}/start', [HomeController::class, 'quizStart'])
     ->middleware('auth.user', 'learner')
     ->name('quiz.start');
 
+/* Quiz Participation Routes */
 Route::middleware(['auth.user', 'learner'])->group(function () {
     Route::get('/quiz/{quizID}/participate', [ParticipationController::class, 'participate'])
         ->name('participate.quiz');
@@ -52,6 +57,9 @@ Route::middleware(['auth.user', 'learner'])->group(function () {
         ->name('participation.result');
 });
 
+/* 
+For Viewing Quizzes with Questions and Leaderboard 
+*/
 Route::get('/quiz/{quizID}/view', [QuizController::class, 'viewQuiz'])
     ->middleware(['auth.user'])
     ->name('quiz.view');
@@ -60,7 +68,16 @@ Route::get('/leaderboard/quiz/{quizID}', [LeaderboardController::class, 'quizLea
     ->middleware('auth.user')
     ->name('leaderboard.quiz');
 
+/* For Viewing Users Profile */
 Route::middleware(['auth.user'])->group(function () {
     Route::get('/profile/{userID}/{userName}', [ProfileController::class, 'showProfile'])
         ->name('profile.show');
+});
+
+/* Routes For Learners */
+Route::middleware(['auth.user', 'learner'])->group(function () {
+    Route::get('/profile/{userID}/{userName}/quiz-attempts', [LearnerController::class, 'myAttempts'])
+        ->name('profile.my.attempts');
+    Route::get('/profile/{userID}/{userName}/my-results', [LearnerController::class, 'myResults'])
+        ->name('profile.my.results');
 });
