@@ -1,5 +1,9 @@
 @extends('layouts.users-layout')
 
+@section('title')
+| {{ $user->name }}
+@endsection
+
 @push('css')
 <style>
     :root {

@@ -1,4 +1,8 @@
-@extends('layouts.users-layout')
+@extends('layouts.profile-layout')
+
+@section('title')
+| My Results
+@endsection
 
 @push('css')
 <style>

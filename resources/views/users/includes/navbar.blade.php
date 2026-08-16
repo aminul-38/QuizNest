@@ -180,9 +180,10 @@
             Home
         </a>
         @if(session('user_role')=="Creator")
-        <a href="/my-quizzes"
-            class="{{ request()->is('my-quizzes*') ? 'active' : '' }}">
-            My Quizzes
+        <a
+            href="{{ route('profile.manage.quizzes',['userID'=>session('user_id'),'userName'=>session('user_name')]) }}"
+            class="{{ request()->routeIs('profile.manage.quizzes') ? 'active' : '' }}">
+            Manage Quizzes
         </a>
         <a href="/quiz/create"
             class="{{ request()->is('quiz/create*') ? 'active' : '' }}">
@@ -220,6 +221,22 @@
                     href="{{ route('profile.show',['userID'=>session('user_id'),'userName'=>session('user_name')]) }}">
                     <i class="bi bi-person me-2"></i>
                     Profile
+                </a>
+            </li>
+            <li>
+                <a
+                    class="dropdown-item"
+                    href="#">
+                    <i class="bi bi-pencil-square me-2"></i>
+                    Edit Profile
+                </a>
+            </li>
+            <li>
+                <a
+                    class="dropdown-item"
+                    href="#">
+                    <i class="bi bi-key-fill me-2"></i>
+                    Change Password
                 </a>
             </li>
             <li>

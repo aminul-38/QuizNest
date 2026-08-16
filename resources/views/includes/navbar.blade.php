@@ -210,6 +210,7 @@
         </button>
 
         @if(session('user_id'))
+        @if(session('user_role')=="Learner")
         <ul class="dropdown-menu dropdown-menu-end">
             <li>
                 <a
@@ -220,15 +221,11 @@
                 </a>
             </li>
             <li>
-                <a class="dropdown-item" href="#">
+                <a
+                    href="{{ route('profile.my.results',['userID'=>session('user_id'),'userName'=>session('user_name')]) }}"
+                    class="dropdown-item">
                     <i class="bi bi-trophy me-2"></i>
                     My Scores
-                </a>
-            </li>
-            <li>
-                <a class="dropdown-item" href="#">
-                    <i class="bi bi-gear me-2"></i>
-                    Settings
                 </a>
             </li>
             <li>
@@ -241,6 +238,35 @@
                 </a>
             </li>
         </ul>
+        @else
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+                <a
+                    class="dropdown-item"
+                    href="{{ route('profile.show',['userID'=>session('user_id'),'userName'=>session('user_name')]) }}">
+                    <i class="bi bi-person me-2"></i>
+                    Profile
+                </a>
+            </li>
+            <li>
+                <a
+                    class="dropdown-item"
+                    href="{{ route('profile.manage.quizzes',['userID'=>session('user_id'),'userName'=>session('user_name')]) }}">
+                    <i class="bi bi-ui-checks-grid me-2"></i>
+                    Manage Quizzes
+                </a>
+            </li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li>
+                <a class="dropdown-item text-danger" href="{{ route('auth.logout') }}">
+                    <i class="bi bi-box-arrow-right me-2"></i>
+                    Logout
+                </a>
+            </li>
+        </ul>
+        @endif
         @else
         <ul class="dropdown-menu dropdown-menu-end">
             <li>

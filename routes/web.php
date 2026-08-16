@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CreatorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\LearnerController;
@@ -80,4 +81,10 @@ Route::middleware(['auth.user', 'learner'])->group(function () {
         ->name('profile.my.attempts');
     Route::get('/profile/{userID}/{userName}/my-results', [LearnerController::class, 'myResults'])
         ->name('profile.my.results');
+});
+
+/* Routes For Creators */
+Route::middleware(['auth.user', 'creator'])->group(function () {
+    Route::get('/profile/{userID}/{userName}/manage-quizzes', [CreatorController::class, 'manageQuizzes'])
+        ->name('profile.manage.quizzes');
 });

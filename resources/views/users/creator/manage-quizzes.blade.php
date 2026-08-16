@@ -1,7 +1,7 @@
 @extends('layouts.profile-layout')
 
 @section('title')
-| My Attempts
+| Manage Quizzes
 @endsection
 
 @push('css')
@@ -12,13 +12,13 @@
         --created-muted: #6c757d;
     }
 
-    /* Attempted Quizzes Header */
-    .attempted-quizzes-header {
+    /* Created Quizzes Header */
+    .created-quizzes-header {
         margin: 35px auto 25px;
         text-align: center;
     }
 
-    .attempted-quizzes-title {
+    .created-quizzes-title {
         position: relative;
         display: inline-block;
         margin: 0;
@@ -28,7 +28,7 @@
         letter-spacing: -.4px;
     }
 
-    .attempted-quizzes-title::after {
+    .created-quizzes-title::after {
         content: "";
         display: block;
         width: 42px;
@@ -38,7 +38,7 @@
         background: var(--created-primary);
     }
 
-    .attempted-quizzes-subtitle {
+    .created-quizzes-subtitle {
         display: block;
         max-width: 600px;
         margin: 10px auto 0;
@@ -133,48 +133,107 @@
         color: #6c757d;
     }
 
-    /* Buttons */
+    /* Quiz Actions */
     .quiz-actions {
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         gap: 10px;
         margin-top: auto;
-        text-align: center;
     }
 
     .quiz-actions a {
-        flex: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
     }
 
+    /* View Quiz */
     .btn-participate {
-        display: inline-block;
-        background: linear-gradient(135deg,
-                #7c4dff,
-                #9b6dff);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        background: linear-gradient(135deg, #7c4dff, #9b6dff);
         color: white;
         border: none;
-        padding: 10px 22px;
+        padding: 10px 18px;
         border-radius: 12px;
         font-weight: 600;
-        transition: .3s;
+        transition: all .3s ease;
     }
 
     .btn-participate:hover {
+        color: white;
         transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(124, 77, 255, .25);
     }
 
+    /* Leaderboard */
     .btn-view {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
         border: 2px solid var(--primary);
         background: white;
         color: var(--primary);
-        padding: 10px 22px;
+        padding: 10px 18px;
         border-radius: 12px;
         font-weight: 600;
+        transition: all .3s ease;
     }
 
     .btn-view:hover {
         background: var(--primary);
         color: white;
+        transform: translateY(-2px);
+    }
+
+    /* Edit Quiz */
+    .btn-edit-quiz {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        background: #f5f3ff;
+        color: #6f42c1;
+        border: 1px solid #ddd2ff;
+        padding: 10px 18px;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: all .3s ease;
+    }
+
+    .btn-edit-quiz:hover {
+        background: #ede7ff;
+        color: #5e20db;
+        border-color: #cbbaff;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 12px rgba(124, 77, 255, .12);
+    }
+
+    /* Delete Quiz */
+    .btn-delete-quiz {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        background: #fff5f5;
+        color: #dc3545;
+        border: 1px solid #ffd6d9;
+        padding: 10px 18px;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: all .3s ease;
+    }
+
+    .btn-delete-quiz:hover {
+        background: #dc3545;
+        color: white;
+        border-color: #dc3545;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 12px rgba(220, 53, 69, .18);
     }
 
     /* Pagination */
@@ -196,61 +255,56 @@
         color: #7c4dff;
     }
 
-    /* No Attempted Quizzes */
-    .attempted-quizzes-empty {
-        margin: 35px auto;
+    /* Showing Empty Quiz */
+    .created-quizzes-empty {
+        margin: 35px auto 35px;
         padding: 55px 25px;
         text-align: center;
         background: #ffffff;
         border: 1px solid rgba(124, 77, 255, .08);
-        border-radius: 24px;
+        border-radius: 20px;
         box-shadow: 0 8px 30px rgba(124, 77, 255, .07);
     }
 
-    .attempted-quizzes-empty-icon {
-        width: 65px;
-        height: 65px;
+    .created-quizzes-empty-icon {
+        width: 60px;
+        height: 60px;
         margin: 0 auto 18px;
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 18px;
+        border-radius: 17px;
         background: #f5f3ff;
         color: #7c4dff;
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     }
 
-    .attempted-quizzes-empty-title {
-        margin: 0 0 8px;
+    .created-quizzes-empty-title {
+        margin: 0 0 7px;
         color: #2d3436;
-        font-size: 1.2rem;
+        font-size: 1.15rem;
         font-weight: 600;
     }
 
-    .attempted-quizzes-empty-text {
-        max-width: 520px;
-        margin: 0 auto;
+    .created-quizzes-empty-text {
+        margin: 0;
         color: #6c757d;
-        font-size: .9rem;
-        line-height: 1.7;
+        font-size: .88rem;
+        line-height: 1.6;
     }
 
     /* Responsive */
     @media (max-width: 768px) {
-        .attempted-quizzes-header {
+        .created-quizzes-header {
             margin-top: 25px;
         }
 
-        .attempted-quizzes-title {
+        .created-quizzes-title {
             font-size: 1.5rem;
         }
 
-        .attempted-quizzes-subtitle {
+        .created-quizzes-subtitle {
             padding: 0 15px;
-        }
-
-        .quiz-actions {
-            flex-direction: column;
         }
     }
 </style>
@@ -259,8 +313,13 @@
 @section('content')
 <div class="container">
     @if($quizzes->isNotEmpty())
-    <div class="attempted-quizzes-header">
-        <h2 class="attempted-quizzes-title"> Your Quiz Attempts </h2> <span class="attempted-quizzes-subtitle"> Review the quizzes you have participated in and keep track of your quiz journey. </span>
+    <div class="created-quizzes-header">
+        <h2 class="created-quizzes-title">
+            Manage Your Quizzes
+        </h2>
+        <span class="created-quizzes-subtitle">
+            View, manage, and organize the quizzes you have created on QuizNest.
+        </span>
     </div>
     <div class="row">
         @foreach($quizzes as $quiz)
@@ -317,16 +376,31 @@
                 </div>
 
                 <div class="quiz-actions">
-                    <a
-                        href="{{ route('quiz.view', ['quizID' => $quiz->id]) }}"
+
+                    <a href="{{ route('quiz.view', ['quizID' => $quiz->id]) }}"
                         class="btn-participate text-decoration-none">
+                        <i class="bi bi-eye"></i>
                         View Quiz
                     </a>
-                    <a
-                        href="{{ route('leaderboard.quiz', ['quizID' => $quiz->id]) }}"
+
+                    <a href="{{ route('leaderboard.quiz', ['quizID' => $quiz->id]) }}"
                         class="btn-view text-decoration-none">
-                        View Leaderboard
+                        <i class="bi bi-bar-chart-line"></i>
+                        Leaderboard
                     </a>
+
+                    <a href="#"
+                        class="btn-edit-quiz text-decoration-none">
+                        <i class="bi bi-pencil-square"></i>
+                        Edit
+                    </a>
+
+                    <a href="#"
+                        class="btn-delete-quiz text-decoration-none">
+                        <i class="bi bi-trash3"></i>
+                        Delete
+                    </a>
+
                 </div>
             </div>
         </div>
@@ -336,15 +410,15 @@
         {{ $quizzes->links() }}
     </div>
     @else
-    <div class="attempted-quizzes-empty">
-        <div class="attempted-quizzes-empty-icon">
-            <i class="bi bi-journal-x"></i>
+    <div class="created-quizzes-empty">
+        <div class="created-quizzes-empty-icon">
+            <i class="bi bi-journal-plus"></i>
         </div>
-        <h3 class="attempted-quizzes-empty-title">
-            No Quiz Attempts Yet
+        <h3 class="created-quizzes-empty-title">
+            Your Quiz Collection Is Empty
         </h3>
-        <p class="attempted-quizzes-empty-text">
-            You haven't attempted any quizzes yet. Explore available quizzes, participate in one, and your completed attempts will appear here.
+        <p class="created-quizzes-empty-text">
+            Create your first quiz to start engaging learners and growing your collection on QuizNest.
         </p>
     </div>
     @endif
