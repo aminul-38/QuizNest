@@ -75,6 +75,18 @@ Route::middleware(['auth.user'])->group(function () {
         ->name('profile.show');
 });
 
+/* Routes For Profile Options */
+Route::middleware(['auth.user'])->group(function () {
+    Route::get('/profile/{userID}/{userName}/edit-profile', [ProfileController::class, 'editProfile'])
+        ->name('profile.edit');
+    Route::post('/profile/update', [ProfileController::class, 'updateProfile'])
+        ->name('profile.update');
+    Route::get('/profile/{userID}/{userName}/change-password', [ProfileController::class, 'changePassword'])
+        ->name('profile.change.password');
+    Route::post('/profile/password-update', [ProfileController::class, 'updatePassword'])
+        ->name('profile.password.update');
+});
+
 /* Routes For Learners */
 Route::middleware(['auth.user', 'learner'])->group(function () {
     Route::get('/profile/{userID}/{userName}/quiz-attempts', [LearnerController::class, 'myAttempts'])

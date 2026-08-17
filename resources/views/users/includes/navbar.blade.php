@@ -140,6 +140,28 @@
         color: var(--primary);
     }
 
+    .dropdown-item.active {
+        position: relative;
+        background: #f3efff;
+        color: var(--primary);
+        font-weight: 600;
+    }
+
+    .dropdown-item.active::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 20%;
+        width: 3px;
+        height: 60%;
+        border-radius: 0 4px 4px 0;
+        background: var(--primary);
+    }
+
+    .dropdown-item.active i {
+        color: var(--primary);
+    }
+
     /* Mobile */
 
     @media(max-width: 768px) {
@@ -210,40 +232,49 @@
             type="button"
             data-bs-toggle="dropdown"
             aria-expanded="false">
-            <img src="{{asset(session('user_profile_picture'))}}"
+            <img src="{{ asset(session('user_profile_picture')) }}"
                 class="user-avatar">
         </button>
 
         <ul class="dropdown-menu dropdown-menu-end">
             <li>
                 <a
-                    class="dropdown-item"
-                    href="{{ route('profile.show',['userID'=>session('user_id'),'userName'=>session('user_name')]) }}">
+                    class="dropdown-item {{request()->routeIs('profile.show') && request()->route('userID') == session('user_id') && request()->route('userName') == session('user_name') ? 'active' : '' }}"
+                    href="{{ route('profile.show', ['userID' => session('user_id'),'userName' => session('user_name')]) }}">
                     <i class="bi bi-person me-2"></i>
                     Profile
                 </a>
             </li>
+
             <li>
                 <a
-                    class="dropdown-item"
-                    href="#">
+                    class="dropdown-item {{ request()->routeIs('profile.edit') ? 'active' : '' }}"
+                    href="{{ route('profile.edit', [
+                    'userID' => session('user_id'),
+                    'userName' => session('user_name')
+                ]) }}">
                     <i class="bi bi-pencil-square me-2"></i>
                     Edit Profile
                 </a>
             </li>
+
             <li>
                 <a
-                    class="dropdown-item"
-                    href="#">
+                    class="dropdown-item {{ request()->routeIs('profile.change.password') ? 'active' : '' }}"
+                    href="{{ route('profile.change.password',['userID'=>session('user_id'),'userName'=>session('user_name')]) }}">
                     <i class="bi bi-key-fill me-2"></i>
                     Change Password
                 </a>
             </li>
+
             <li>
                 <hr class="dropdown-divider">
             </li>
+
             <li>
-                <a class="dropdown-item text-danger" href="{{ route('auth.logout') }}">
+                <a
+                    class="dropdown-item text-danger"
+                    href="{{ route('auth.logout') }}">
                     <i class="bi bi-box-arrow-right me-2"></i>
                     Logout
                 </a>

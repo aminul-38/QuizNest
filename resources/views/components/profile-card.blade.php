@@ -224,6 +224,13 @@
 
 
 <div class="container">
+    @if(session('success'))
+    <div class="alert alert-success border-0 rounded-3 mt-3">
+        <i class="bi bi-check-circle me-2"></i>
+        {{ session('success') }}
+    </div>
+    @endif
+
     <div class="profile-card">
         <div class="profile-header">
             <div class="profile-picture">
