@@ -21,4 +21,13 @@ class CreatorController extends Controller
             return redirect()->back();
         }
     }
+
+    public function createQuiz(Request $request)
+    {
+        if ($request->userID != session('user_id') || $request->userName != session('user_name')) {
+            return redirect()->back();
+        }
+
+        return view('users.creator.create-quiz');
+    }
 }

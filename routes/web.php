@@ -99,4 +99,6 @@ Route::middleware(['auth.user', 'learner'])->group(function () {
 Route::middleware(['auth.user', 'creator'])->group(function () {
     Route::get('/profile/{userID}/{userName}/manage-quizzes', [CreatorController::class, 'manageQuizzes'])
         ->name('profile.manage.quizzes');
+    Route::get('creator/{userID}/{userName}/create-quiz', [CreatorController::class, 'createQuiz'])
+        ->name('create.quiz');
 });

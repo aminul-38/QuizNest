@@ -207,8 +207,9 @@
             class="{{ request()->routeIs('profile.manage.quizzes') ? 'active' : '' }}">
             Manage Quizzes
         </a>
-        <a href="/quiz/create"
-            class="{{ request()->is('quiz/create*') ? 'active' : '' }}">
+        <a
+            href="{{ route('create.quiz',['userID'=>session('user_id'),'userName'=>session('user_name')]) }}"
+            class="{{ request()->routeIs('create.quiz') ? 'active' : '' }}">
             Create Quiz
         </a>
         @else
